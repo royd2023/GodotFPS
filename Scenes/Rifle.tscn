@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://kl1sa6a2plcp"]
 
-[ext_resource type="PackedScene" uid="uid://bqum30i1kerwj" path="res://Assault Rifle (1).glb" id="1_oulik"]
+[ext_resource type="PackedScene" uid="uid://bqum30i1kerwj" path="res://Scenes/Assault Rifle (1).glb" id="1_oulik"]
 
 [sub_resource type="Animation" id="Animation_7cti1"]
 resource_name = "Shoot"

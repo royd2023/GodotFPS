@@ -1,23 +1,23 @@
 [gd_scene load_steps=58 format=3 uid="uid://cdmkcdew6t15e"]
 
-[ext_resource type="Script" path="res://Scenes/game.gd" id="1_1abvs"]
-[ext_resource type="Script" path="res://Player.gd" id="1_5urrn"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_1abvs"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_5urrn"]
 [ext_resource type="PackedScene" uid="uid://cl84tcshyur7a" path="res://Scenes/game_manager.tscn" id="2_nmwkk"]
-[ext_resource type="Texture2D" uid="uid://dsc1h66xasmfi" path="res://hitmarker20x20.png" id="3_65g26"]
-[ext_resource type="Texture2D" uid="uid://dmkn6bb1skgi0" path="res://crosshair20x20.png" id="4_d6ycx"]
-[ext_resource type="Script" path="res://Rifle.gd" id="5_6tvwj"]
+[ext_resource type="Texture2D" uid="uid://dsc1h66xasmfi" path="res://Pictures/hitmarker20x20.png" id="3_65g26"]
+[ext_resource type="Texture2D" uid="uid://dmkn6bb1skgi0" path="res://Pictures/crosshair20x20.png" id="4_d6ycx"]
+[ext_resource type="Script" path="res://Scripts/Rifle.gd" id="5_6tvwj"]
 [ext_resource type="PackedScene" uid="uid://kl1sa6a2plcp" path="res://Scenes/Rifle.tscn" id="5_me3q1"]
 [ext_resource type="PackedScene" uid="uid://dtdcxltr03obb" path="res://Scenes/enemy.tscn" id="6_jy7k3"]
 [ext_resource type="PackedScene" uid="uid://xrbguvkr3yqt" path="res://Scenes/Pistol.tscn" id="7_n8bau"]
 [ext_resource type="PackedScene" uid="uid://b3unthhymy7s4" path="res://Scenes/katana.tscn" id="8_81sbe"]
-[ext_resource type="Texture2D" uid="uid://hb3nruqrqpfc" path="res://dashvisual.png" id="9_q0di4"]
+[ext_resource type="Texture2D" uid="uid://hb3nruqrqpfc" path="res://Pictures/dashvisual.png" id="9_q0di4"]
 [ext_resource type="PackedScene" uid="uid://2uaxkgx8ne7h" path="res://Scenes/Sniper.tscn" id="11_1w3yk"]
-[ext_resource type="Texture2D" uid="uid://c6ysveaxjmjqa" path="res://sniperADS.png" id="12_0oj2w"]
+[ext_resource type="Texture2D" uid="uid://c6ysveaxjmjqa" path="res://Pictures/sniperADS.png" id="12_0oj2w"]
 [ext_resource type="PackedScene" uid="uid://cmgxsceamj3q0" path="res://Scenes/hud.tscn" id="12_qf8dq"]
-[ext_resource type="Texture2D" uid="uid://bdog0kyaoued0" path="res://rm301-eye-10-a.jpg" id="13_otmmw"]
-[ext_resource type="PackedScene" uid="uid://bjuj8e4kb15pe" path="res://med_box.tscn" id="16_uyf8e"]
-[ext_resource type="PackedScene" uid="uid://dysfrrh28y5g3" path="res://interatable.tscn" id="17_3gyd0"]
-[ext_resource type="Script" path="res://RifleInteract.gd" id="18_uxlll"]
+[ext_resource type="Texture2D" uid="uid://bdog0kyaoued0" path="res://Pictures/rm301-eye-10-a.jpg" id="13_otmmw"]
+[ext_resource type="PackedScene" uid="uid://bjuj8e4kb15pe" path="res://Scenes/med_box.tscn" id="16_uyf8e"]
+[ext_resource type="PackedScene" uid="uid://dysfrrh28y5g3" path="res://Scenes/interatableRifle.tscn" id="17_3gyd0"]
+[ext_resource type="Script" path="res://Scripts/RifleInteract.gd" id="18_uxlll"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_utop0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -322,6 +322,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58926, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0734186, -0.991829, -0.0131445)
+current = true
 fov = 90.0
 near = 0.001
 

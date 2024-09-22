@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cmgxsceamj3q0"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_3o122"]
+[ext_resource type="Script" path="res://Pictures/hud.gd" id="1_3o122"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6h55"]
 bg_color = Color(0.814182, 0.0958833, 1.92523e-07, 1)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bjuj8e4kb15pe"]
 
-[ext_resource type="Script" path="res://Scenes/MedBox.gd" id="1_ya0ar"]
+[ext_resource type="Script" path="res://Scripts/MedBox.gd" id="1_ya0ar"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pgk18"]
 

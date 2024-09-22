@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdog0kyaoued0"
-path.s3tc="res://.godot/imported/rm301-eye-10-a.jpg-4d994d0ed9afab6aea8291a64fe1713f.s3tc.ctex"
+uid="uid://c7t3swho30a1g"
+path.s3tc="res://.godot/imported/Glock_Diffuse_palette_2.jpg-273c46600284f75c211f816e451977dc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "4f5c1a764fc9801ab8cb5731c984d383"
+}
 
 [deps]
 
-source_file="res://rm301-eye-10-a.jpg"
-dest_files=["res://.godot/imported/rm301-eye-10-a.jpg-4d994d0ed9afab6aea8291a64fe1713f.s3tc.ctex"]
+source_file="res://Pictures/Glock_Diffuse_palette_2.jpg"
+dest_files=["res://.godot/imported/Glock_Diffuse_palette_2.jpg-273c46600284f75c211f816e451977dc.s3tc.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://2uaxkgx8ne7h"]
 
-[ext_resource type="PackedScene" uid="uid://cqs854m3bavur" path="res://Sniper Rifle.glb" id="1_mmfo0"]
+[ext_resource type="PackedScene" uid="uid://cqs854m3bavur" path="res://Scenes/Sniper Rifle.glb" id="1_mmfo0"]
 
 [sub_resource type="Animation" id="Animation_sf4xq"]
 resource_name = "sniper_reload"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hb3nruqrqpfc"
-path="res://.godot/imported/dashvisual.png-9d456705f4d7bfa02a7a6c288c520d75.ctex"
+uid="uid://dsc1h66xasmfi"
+path="res://.godot/imported/hitmarker20x20.png-d3b95a0f6c818498f37e3e6bb1d3325d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dashvisual.png"
-dest_files=["res://.godot/imported/dashvisual.png-9d456705f4d7bfa02a7a6c288c520d75.ctex"]
+source_file="res://Pictures/hitmarker20x20.png"
+dest_files=["res://.godot/imported/hitmarker20x20.png-d3b95a0f6c818498f37e3e6bb1d3325d.ctex"]
 
 [params]
 
