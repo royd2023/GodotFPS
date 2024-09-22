@@ -17,6 +17,6 @@ func _ready():
 func _on_interacted():
 	if is_active:
 		# Define what happens when the object is interacted with
-		print("Interacting")
+		print("Interacting with AK")
 		
 		
