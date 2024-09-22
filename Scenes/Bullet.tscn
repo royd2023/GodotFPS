@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://bl5vt1ox6ps0k"]
+
+[ext_resource type="Script" path="res://Scenes/Bullet.gd" id="1_unre1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nfv5b"]
+size = Vector3(0.05, 0.05, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2sb5s"]
+albedo_color = Color(0.870547, 0.674249, 0.264287, 1)
+emission_enabled = true
+emission = Color(0.836176, 0.68113, 0.438921, 1)
+emission_energy_multiplier = 4.42
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cn6eb"]
+data = PackedVector3Array(-0.025, 0.025, 0.25, 0.025, 0.025, 0.25, -0.025, -0.025, 0.25, 0.025, 0.025, 0.25, 0.025, -0.025, 0.25, -0.025, -0.025, 0.25, 0.025, 0.025, -0.25, -0.025, 0.025, -0.25, 0.025, -0.025, -0.25, -0.025, 0.025, -0.25, -0.025, -0.025, -0.25, 0.025, -0.025, -0.25, 0.025, 0.025, 0.25, 0.025, 0.025, -0.25, 0.025, -0.025, 0.25, 0.025, 0.025, -0.25, 0.025, -0.025, -0.25, 0.025, -0.025, 0.25, -0.025, 0.025, -0.25, -0.025, 0.025, 0.25, -0.025, -0.025, -0.25, -0.025, 0.025, 0.25, -0.025, -0.025, 0.25, -0.025, -0.025, -0.25, 0.025, 0.025, 0.25, -0.025, 0.025, 0.25, 0.025, 0.025, -0.25, -0.025, 0.025, 0.25, -0.025, 0.025, -0.25, 0.025, 0.025, -0.25, -0.025, -0.025, 0.25, 0.025, -0.025, 0.25, -0.025, -0.025, -0.25, 0.025, -0.025, 0.25, 0.025, -0.025, -0.25, -0.025, -0.025, -0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piyff"]
+albedo_color = Color(0.773459, 0.621648, 0.195455, 1)
+emission_enabled = true
+emission = Color(0.914891, 0.839069, 0.182453, 1)
+emission_energy_multiplier = 7.83
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_f3l3q"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_26xtc"]
+directional_velocity_min = -3.0
+directional_velocity_max = 3.0
+directional_velocity_curve = SubResource("CurveXYZTexture_f3l3q")
+radial_velocity_min = -10.0
+radial_velocity_max = 10.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_aaamx"]
+size = Vector3(0.04, 0.04, 0.04)
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_unre1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = SubResource("BoxMesh_nfv5b")
+surface_material_override/0 = SubResource("StandardMaterial3D_2sb5s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_cn6eb")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -0.3)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00151841, 0.999999, 0, -0.999999, -0.00151841, 0, 0, -0.275227)
+material_override = SubResource("StandardMaterial3D_piyff")
+emitting = false
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_26xtc")
+draw_pass_1 = SubResource("BoxMesh_aaamx")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

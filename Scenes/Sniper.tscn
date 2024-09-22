@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://2uaxkgx8ne7h"]
+
+[ext_resource type="PackedScene" uid="uid://cqs854m3bavur" path="res://Sniper Rifle.glb" id="1_mmfo0"]
+
+[sub_resource type="Animation" id="Animation_sf4xq"]
+resource_name = "sniper_reload"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SniperRifle_3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 5),
+"transitions": PackedFloat32Array(1, 6.49802, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.25, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tlngs"]
+resource_name = "sniper_shoot"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SniperRifle_3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.25, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SniperRifle_3:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(-1.5708, 0, 0), Vector3(-1.5708, 0, -0.0523599), Vector3(-1.5708, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jy6og"]
+_data = {
+"sniper_reload": SubResource("Animation_sf4xq"),
+"sniper_shoot": SubResource("Animation_tlngs")
+}
+
+[node name="Root Scene" instance=ExtResource("1_mmfo0")]
+
+[node name="SniperRifle_3" parent="RootNode" index="0"]
+transform = Transform3D(30, 0, 0, 0, -1.31134e-06, 30, 0, -30, -1.31134e-06, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RootNode" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_jy6og")
+}
+
+[node name="SniperBarrel" type="Node3D" parent="RootNode" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60925, 0.122917, 0)

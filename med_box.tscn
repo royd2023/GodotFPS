@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjuj8e4kb15pe"]
+
+[ext_resource type="Script" path="res://Scenes/MedBox.gd" id="1_ya0ar"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pgk18"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mde3c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v41xe"]
+
+[node name="MedBox" type="Node3D" groups=["Interact"]]
+script = ExtResource("1_ya0ar")
+
+[node name="InteractableBox" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03429, 0.496392, 0)
+mesh = SubResource("BoxMesh_pgk18")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_mde3c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03429, 0.496392, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_v41xe")

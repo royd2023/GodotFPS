@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3unthhymy7s4"]
+
+[ext_resource type="PackedScene" uid="uid://ch80brjdp7i6w" path="res://Scenes/Katana.glb" id="1_rd6q3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lq0o3"]
+metallic = 1.0
+metallic_specular = 1.0
+emission = Color(0.182712, 0.623811, 0.25953, 1)
+emission_energy_multiplier = 4.78
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k61gg"]
+points = PackedVector3Array(-5.92722e-05, 0.000334298, 0.000479144, -5.92722e-05, -0.000321781, 0.000479144, -1.55265e-05, -0.000234272, -0.00162187, 0.000334375, -5.92551e-05, 0.000479144, -1.55265e-05, 0.000640531, 0.00682187, -0.000321875, -5.92551e-05, 0.000479144, -1.55265e-05, 0.000159375, 0.00594659, 0.000203074, 7.19606e-05, -0.00162187, -0.000190509, 7.19606e-05, -0.00162187, 0.000246819, -0.000234272, 0.000479144, -0.000234255, 0.000246789, 0.000479144, 0.000246819, 0.000203082, 0.000479144, 2.80907e-05, 0.000640531, 0.00664583, -0.000234255, -0.000234272, 0.000479144, -1.55265e-05, -1.55479e-05, 0.00454646, -1.55265e-05, 0.000246789, 0.0064706, -0.000234255, -1.55479e-05, -0.00162187, -0.000321875, 7.19606e-05, 0.000479144, 2.80907e-05, 0.000334298, 0.000479144, 7.18364e-05, -0.000321781, 0.000479144, 0.000159328, -0.000103057, -0.00162187, 0.000334375, 2.81592e-05, 0.000479144, 0.000115582, 0.000290591, 0.000479144, -1.55265e-05, -0.000103057, 0.00354058, -1.55265e-05, 0.000509221, 0.00677807, -1.55265e-05, 0.000290591, 0.00655821)
+
+[sub_resource type="Animation" id="Animation_65lb1"]
+resource_name = "katana_swing"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Katana:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(0.785398, 0, 0), Vector3(-1.5708, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mtx4q"]
+resource_name = "katana_swing2"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Katana:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.3, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 4.92458, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(-1.5708, 0.523599, 0), Vector3(-0.785398, 0.349066, 0), Vector3(-0.523599, 0.436332, -0.872665), Vector3(-0.349066, 0, -0.872665), Vector3(-1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Katana:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.75, 0, 0), Vector3(-0.5, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5wk6j"]
+resource_name = "slash_dash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Katana:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.1), Vector3(0, 0, 0.2), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Katana:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1.23115, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(0, 2.0944, -1.5708), Vector3(-0.785398, 0, -1.5708), Vector3(-1.5708, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gyk3k"]
+_data = {
+"katana_swing": SubResource("Animation_65lb1"),
+"katana_swing2": SubResource("Animation_mtx4q"),
+"slash_dash": SubResource("Animation_5wk6j")
+}
+
+[node name="Root Scene" instance=ExtResource("1_rd6q3")]
+
+[node name="Katana" parent="RootNode" index="0"]
+transform = Transform3D(100, 0, 0, 0, -0.000361999, 100, 0, -100, -0.000361999, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_lq0o3")
+
+[node name="Area3D" type="Area3D" parent="RootNode/Katana" index="0"]
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, 0, 0, 0)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/Katana/Area3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_k61gg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RootNode" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_gyk3k")
+}

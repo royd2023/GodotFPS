@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://kl1sa6a2plcp"]
+
+[ext_resource type="PackedScene" uid="uid://bqum30i1kerwj" path="res://Assault Rifle (1).glb" id="1_oulik"]
+
+[sub_resource type="Animation" id="Animation_7cti1"]
+resource_name = "Shoot"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.5, 0, 0), Vector3(0.3, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.07, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0872665), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -0.0523599), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_86jmf"]
+resource_name = "rifle_reload"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AssaultRifle_2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(1, 3.4822, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.75, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3rfll"]
+_data = {
+"Shoot": SubResource("Animation_7cti1"),
+"rifle_reload": SubResource("Animation_86jmf")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_612s2"]
+size = Vector3(2.64868, 0.782715, 0.0905762)
+
+[node name="Root Scene" instance=ExtResource("1_oulik")]
+
+[node name="AssaultRifle_2" parent="RootNode" index="0"]
+transform = Transform3D(50, 0, -2.18557e-06, 2.18557e-06, 9.55343e-14, 50, 0, -50, 9.55343e-14, 0, 0, 0)
+cast_shadow = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RootNode" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_3rfll")
+}
+
+[node name="Barrel" type="Node3D" parent="RootNode" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92869, 0.292165, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RootNode" index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.543705, 0.0397949, -0.000751883)
+shape = SubResource("BoxShape3D_612s2")
