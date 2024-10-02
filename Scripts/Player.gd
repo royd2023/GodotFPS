@@ -62,7 +62,9 @@ signal player_died
 signal interacting
 signal not_interacting
 
-
+# Interaction variables
+var sniper_equipped = false
+var ak_equipped = true
 
 
 @onready var hud = load("res://Scenes/hud.tscn")
@@ -211,44 +213,21 @@ func _physics_process(delta):
 
 	# Weapon Switching
 	if !is_reloading:		
-		if Input.is_action_just_pressed("Weapon 1") and weapon != weapons.RIFLE:
-			_raise_weapon(weapons.RIFLE)
-			has_sword_out = false
-			current_ammo = rifle_ammo
-			emit_signal("ammo_changed", rifle_ammo)
-			rifle.visible = true
-			pistol.visible = false
-			katana.visible = false
-			sniper.visible = false
-		if Input.is_action_just_pressed("Weapon 2") and weapon != weapons.PISTOL:
-			_raise_weapon(weapons.PISTOL)
-			has_sword_out = false
-			current_ammo = pistol_ammo
-			emit_signal("ammo_changed", pistol_ammo)
-			pistol.visible = true
-			rifle.visible = false
-			katana.visible = false
-			sniper.visible = false
-		if Input.is_action_just_pressed("Melee Weapon") and weapon != weapons.KATANA:
-			has_sword_out = true
-			_raise_weapon(weapons.KATANA)
-			current_ammo = 0
-			emit_signal("ammo_changed", 0)
-			katana.visible = true
-			pistol.visible = false
-			rifle.visible = false
-			sniper.visible = false
+		if Input.is_action_just_pressed("Weapon 1"):
+			if weapon != weapons.RIFLE and ak_equipped:
+				equip_ak()
+				sniper_equipped = false
+
+			if weapon != weapons.SNIPER and sniper_equipped:
+				equip_sniper()
+				ak_equipped = false
 			
+		if Input.is_action_just_pressed("Weapon 2"):
+			equip_pistol()
+		if Input.is_action_just_pressed("Melee Weapon"):
+			equip_katana()
 			
-		#if Input.is_action_just_pressed("weapon4") and weapon != weapons.SNIPER:
-			#_raise_weapon(weapons.SNIPER)
-			#has_sword_out = false
-			#current_ammo = sniper_ammo
-			#emit_signal("ammo_changed", sniper_ammo)
-			#sniper.visible = true
-			#pistol.visible = false
-			#rifle.visible = false
-			#katana.visible = false
+
 		
 	# Dashing
 	if is_dashing:
@@ -312,7 +291,52 @@ func interact():
 	else:
 		emit_signal("not_interacting")		
 						
-
+func equip_sniper():
+	if weapon != weapons.SNIPER:
+		_raise_weapon(weapons.SNIPER)
+		has_sword_out = false
+		current_ammo = sniper_ammo
+		emit_signal("ammo_changed", sniper_ammo)
+		sniper.visible = true
+		pistol.visible = false
+		rifle.visible = false
+		katana.visible = false
+		sniper_equipped = true
+		ak_equipped = false
+		
+func equip_ak():
+	if weapon != weapons.RIFLE:
+		_raise_weapon(weapons.RIFLE)
+		has_sword_out = false
+		current_ammo = rifle_ammo
+		emit_signal("ammo_changed", rifle_ammo)
+		rifle.visible = true
+		pistol.visible = false
+		katana.visible = false
+		sniper.visible = false
+		ak_equipped = true
+	
+func equip_pistol():
+	if weapon != weapons.PISTOL:
+		_raise_weapon(weapons.PISTOL)
+		has_sword_out = false
+		current_ammo = pistol_ammo
+		emit_signal("ammo_changed", pistol_ammo)
+		pistol.visible = true
+		rifle.visible = false
+		katana.visible = false
+		sniper.visible = false
+	
+func equip_katana():
+	if weapon != weapons.KATANA:
+		has_sword_out = true
+		_raise_weapon(weapons.KATANA)
+		current_ammo = 0
+		emit_signal("ammo_changed", 0)
+		katana.visible = true
+		pistol.visible = false
+		rifle.visible = false
+		sniper.visible = false
 # INTERACTION ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #---------------------------------------------------------------------------------------------------------------------

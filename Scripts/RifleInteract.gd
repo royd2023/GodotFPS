@@ -1,7 +1,9 @@
 extends Node3D
 
+@onready var player = $"../CharacterBody3D"
 # Declare signals for interacting and stopping interaction
 signal interacted
+
 
 # Optional variables if your object needs specific states
 var is_active: bool = true
@@ -18,5 +20,6 @@ func _on_interacted():
 	if is_active:
 		# Define what happens when the object is interacted with
 		print("Interacting with AK")
+		player.equip_ak()
 		
 		

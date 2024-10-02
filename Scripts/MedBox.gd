@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var health_bar = $HealthBar
+
 @onready var player = $"../CharacterBody3D"
 
 # Declare signals for interacting and stopping interaction
