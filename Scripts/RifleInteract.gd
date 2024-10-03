@@ -1,6 +1,7 @@
-extends Node3D
+extends RigidBody3D
 
 @onready var player = $"../CharacterBody3D"
+
 # Declare signals for interacting and stopping interaction
 signal interacted
 
@@ -12,6 +13,9 @@ var is_active: bool = true
 func _ready():
 	# Connect the signal to the interaction logic
 		connect("interacted", Callable(self, "_on_interacted"))
+		set_physics_process(false)
+		print("weapon dropped")
+		
 		
 		
 
@@ -21,5 +25,7 @@ func _on_interacted():
 		# Define what happens when the object is interacted with
 		print("Interacting with AK")
 		player.equip_ak()
+		queue_free()
 		
-		
+
+

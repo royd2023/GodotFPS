@@ -1,5 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://dysfrrh28y5g3"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_emwgr"]
+size = Vector3(2.65259, 0.899597, 0.141627)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffhum"]
 resource_name = "Wood"
 albedo_color = Color(0.359591, 0.297533, 0.259407, 1)
@@ -153,10 +156,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_5nxcb")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_emwgr"]
-size = Vector3(2.61279, 0.899597, 0.326378)
+[node name="RifleInteract" type="RigidBody3D" groups=["Interact"]]
 
-[node name="RifleInteract" type="Node3D" groups=["Interact"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 6.31089e-30, 0, 1, 0, 6.31089e-30, 0, 1, 0.559448, 0.212494, 0.0201717)
+shape = SubResource("BoxShape3D_emwgr")
 
 [node name="AssaultRifle_2" type="MeshInstance3D" parent="."]
 transform = Transform3D(50, 0, -2.18557e-06, 2.18557e-06, 9.55343e-14, 50, 0, -50, 9.55343e-14, 0, 0, 0)
@@ -164,9 +168,8 @@ cast_shadow = 0
 mesh = SubResource("ArrayMesh_bnje8")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 6.31089e-30, 0, 1, 0, 6.31089e-30, 0, 1, 0, 0, 0)
+[node name="Area3D" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.579346, 0.212494, 0.0176659)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 6.31089e-30, 0, 1, 0, 6.31089e-30, 0, 1, 0.579346, 0.212494, 0.0176659)
 shape = SubResource("BoxShape3D_emwgr")

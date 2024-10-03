@@ -22,8 +22,8 @@ enum weapons {
 	KATANA,
 	SNIPER
 }
-var weapon = weapons.RIFLE
-var can_shoot = true
+var weapon = null
+var can_shoot = false
 
 # Dash parameters
 const DASH_SPEED = 20.0
@@ -43,7 +43,7 @@ var is_climbing = false
 var rifle_ammo = 30
 var pistol_ammo = 15
 var sniper_ammo = 1
-var current_ammo = rifle_ammo
+var current_ammo = 0
 
 const RIFLE_RELOAD_TIME = 2.0
 const PISTOL_RELOAD_TIME = 1.0
@@ -64,7 +64,7 @@ signal not_interacting
 
 # Interaction variables
 var sniper_equipped = false
-var ak_equipped = true
+var ak_equipped = false
 
 
 @onready var hud = load("res://Scenes/hud.tscn")
@@ -104,10 +104,14 @@ var zoomed_in = false
 # Interaction
 @onready var interact_ray = $Neck/Camera3D/InteractRay
 
+# Dropping
+@onready var dropped_rifle_scene = load("res://Scenes/interatableRifle.tscn")
+
 func _ready():
 	# Connect the katana hitbox signal
 	katana_hitbox.connect("body_entered", Callable(self, "_on_katana_hitbox_body_entered"))
 	dash_visual.visible = false
+	rifle.visible = false
 	pistol.visible = false
 	katana.visible = false
 	sniper.visible = false
@@ -212,7 +216,7 @@ func _physics_process(delta):
 		
 
 	# Weapon Switching
-	if !is_reloading:		
+	if !is_reloading and !weapon == null:		
 		if Input.is_action_just_pressed("Weapon 1"):
 			if weapon != weapons.RIFLE and ak_equipped:
 				equip_ak()
@@ -260,11 +264,50 @@ func _physics_process(delta):
 	# Interaction
 	interact()
 	
+	if Input.is_action_just_pressed("Drop"):
+		drop()
 		
 		
 		
+#---------------------------------------------------------------------------------------------------------------------
 
+# DROPPING VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 
+func drop():
+	if weapon == weapons.RIFLE:
+		_drop_rifle()
+
+# CURRENT PROBLEM: After dropping the ak, you can't pick it up again. 
+# WHY? The script isn't running after being dropped. For debugging, the interactable
+# rifle script prints "weapon dropped" when it runs, but it doesn't after dropping. hmmm
+
+func _drop_rifle():
+	# Hide current rifle in player's hand
+	rifle.visible = false
+	# Update weapon states to "unarmed" after dropping
+	weapon = null
+	current_ammo = 0
+	emit_signal("ammo_changed", 0)
+	
+	# Load the dropped rifle scene
+	var dropped_rifle_instance = dropped_rifle_scene.instantiate()
+	# Add the dropped rifle to the scene tree
+	get_tree().root.add_child(dropped_rifle_instance)
+	
+	# Set the position of the dropped rifle to the player's position
+	dropped_rifle_instance.global_transform.origin = global_transform.origin + Vector3(0, 1, 0)
+	
+	# Add some force to make it drop slightly in front of the player
+	if dropped_rifle_instance.has_method("apply_impulse"):
+		dropped_rifle_instance.apply_impulse(Vector3(), camera.global_transform.basis.z * 3)
+	
+	
+	
+	
+
+	
+
+# DROPPING ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #---------------------------------------------------------------------------------------------------------------------
 		
@@ -280,7 +323,7 @@ func interact():
 			# print("Collider: ", coll, ", Parent: ", parent, ", Groups: ", parent.get_groups())
 			if parent and parent.is_in_group("Interact"):
 				emit_signal("interacting")
-				# print("looking at interactable")
+				#print("looking at interactable")
 				if Input.is_action_just_pressed("interact"):
 					# print("Is Interacting successfully")
 					parent.emit_signal("interacted") # Trigger the interaction				
@@ -354,6 +397,7 @@ func die():
 	print("player died")
 	emit_signal("player_died")
 	queue_free()
+
 
 func player_recieve_health(hp):
 	current_health = 100	

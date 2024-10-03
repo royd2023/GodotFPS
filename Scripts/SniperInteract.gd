@@ -22,5 +22,6 @@ func _on_interacted():
 		# Define what happens when the object is interacted with
 		print("Interacting with Sniper")
 		player.equip_sniper()
+		queue_free()
 		
 		
